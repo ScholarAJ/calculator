@@ -5,6 +5,101 @@ import java.util.regex.*;
 import java.text.DecimalFormat;
 
 public final class App {
+
+    public static String handleInput(String userInput, Calculator myCalc) {
+        // String array to store first and second numbers
+        String[] numArray;
+                    
+        // String to store formatted solution
+        String solution;
+
+        // DecimalFormat object for formatting answer
+        DecimalFormat decForm;
+
+        // If the provided expression is addition, call related methods
+        if (userInput.indexOf("+") > -1) {
+                        
+            // Split userInput string into two substrings, divided by the addition operator
+            numArray = userInput.split("\\+");
+
+            // Parse through both substrings, assigning the double values to firstNum and secondNum
+            double firstNum = Double.parseDouble(numArray[0].trim());
+            double secondNum = Double.parseDouble(numArray[1].trim());
+
+            // Specifies a max number of eleven decimal places, trimming insignificant zeros
+            decForm = new DecimalFormat("#.###########");
+
+            // Format the solution's decimal places
+            solution = decForm.format(myCalc.add(firstNum, secondNum));
+
+            return solution;
+
+        }
+
+        // If the provided expression is subtraction, call related methods
+        else if (userInput.indexOf("-") > -1) {
+
+            // Split userInput string into two substrings, divided by the subtraction operator
+            numArray = userInput.split("\\-");
+
+            // Parse through both substrings, assigning the double values to firstNum and secondNum
+            double firstNum = Double.parseDouble(numArray[0].trim());
+            double secondNum = Double.parseDouble(numArray[1].trim());
+
+            // Specifies a max number of eleven decimal places, trimming insignificant zeros
+            decForm = new DecimalFormat("#.###########");
+
+            // Format the solution's decimal places
+            solution = decForm.format(myCalc.subtract(firstNum, secondNum));
+
+            return solution;
+
+        }
+
+        // If the provided expression is multiplication, call related methods
+        else if (userInput.indexOf("*") > -1) {
+
+            // Split userInput string into two substrings, divided by the multiplication operator
+            numArray = userInput.split("\\*");
+
+            // Parse through both substrings, assigning the double values to firstNum and secondNum
+            double firstNum = Double.parseDouble(numArray[0].trim());
+            double secondNum = Double.parseDouble(numArray[1].trim());
+
+            // Specifies a max number of eleven decimal places, trimming insignificant zeros
+            decForm = new DecimalFormat("#.###########");
+
+            // Format the solution's decimal places
+            solution = decForm.format(myCalc.multiply(firstNum, secondNum));
+
+            return solution;
+
+        }
+
+        // If the provided expression is division, call related methods
+        else if (userInput.indexOf("/") > -1) {
+
+            // Split userInput string into two substrings, divided by the division operator
+            numArray = userInput.split("\\/");
+
+            // Parse through both substrings, assigning the double values to firstNum and secondNum
+            double firstNum = Double.parseDouble(numArray[0].trim());
+            double secondNum = Double.parseDouble(numArray[1].trim());
+
+            // Specifies a max number of eleven decimal places, trimming insignificant zeros
+            decForm = new DecimalFormat("#.###########");
+
+            // Format the solution's decimal places
+            solution = decForm.format(myCalc.divide(firstNum, secondNum));
+
+            return solution;
+        }
+
+        else {
+            return "Expression could not be processed.";
+        }
+    } 
+
     public static void main(String[] args) {
         
         // Instance of Calculator class
@@ -56,97 +151,7 @@ public final class App {
 
                     //System.out.println("Expression is valid.");
 
-                    // String array to store first and second numbers
-                    String[] numArray;
-                    
-                    // String to store formatted solution
-                    String solution;
-
-                    // DecimalFormat object for formatting answer
-                    DecimalFormat decForm;
-
-                    // If the provided expression is addition, call related methods
-                    if (userInput.indexOf("+") > -1) {
-                        
-                        // Split userInput string into two substrings, divided by the addition operator
-                        numArray = userInput.split("\\+");
-
-                        // Parse through both substrings, assigning the double values to firstNum and secondNum
-                        double firstNum = Double.parseDouble(numArray[0].trim());
-                        double secondNum = Double.parseDouble(numArray[1].trim());
-
-                        // Specifies a max number of eleven decimal places, trimming insignificant zeros
-                        decForm = new DecimalFormat("#.###########");
-
-                        // Format the solution's decimal places
-                        solution = decForm.format(firstNum) + " + " + decForm.format(secondNum) + " = " + decForm.format(myCalc.add(firstNum, secondNum));
-
-                        System.out.println(solution);
-
-                    }
-
-                    // If the provided expression is subtraction, call related methods
-                    else if (userInput.indexOf("-") > -1) {
-
-                        // Split userInput string into two substrings, divided by the subtraction operator
-                        numArray = userInput.split("\\-");
-
-                        // Parse through both substrings, assigning the double values to firstNum and secondNum
-                        double firstNum = Double.parseDouble(numArray[0].trim());
-                        double secondNum = Double.parseDouble(numArray[1].trim());
-
-                        // Specifies a max number of eleven decimal places, trimming insignificant zeros
-                        decForm = new DecimalFormat("#.###########");
-
-                        // Format the solution's decimal places
-                        solution = decForm.format(firstNum) + " - " + decForm.format(secondNum) + " = " + decForm.format(myCalc.subtract(firstNum, secondNum));
-
-                        System.out.println(solution);
-
-                    }
-
-                    // If the provided expression is multiplication, call related methods
-                    else if (userInput.indexOf("*") > -1) {
-
-                        // Split userInput string into two substrings, divided by the multiplication operator
-                        numArray = userInput.split("\\*");
-
-                        // Parse through both substrings, assigning the double values to firstNum and secondNum
-                        double firstNum = Double.parseDouble(numArray[0].trim());
-                        double secondNum = Double.parseDouble(numArray[1].trim());
-
-                        // Specifies a max number of eleven decimal places, trimming insignificant zeros
-                        decForm = new DecimalFormat("#.###########");
-
-                        // Format the solution's decimal places
-                        solution = decForm.format(firstNum) + " * " + decForm.format(secondNum) + " = " + decForm.format(myCalc.multiply(firstNum, secondNum));
-
-                        System.out.println(solution);
-
-                    }
-
-                    // If the provided expression is division, call related methods
-                    else if (userInput.indexOf("/") > -1) {
-
-                        // Split userInput string into two substrings, divided by the division operator
-                        numArray = userInput.split("\\/");
-
-                        // Parse through both substrings, assigning the double values to firstNum and secondNum
-                        double firstNum = Double.parseDouble(numArray[0].trim());
-                        double secondNum = Double.parseDouble(numArray[1].trim());
-
-                        // Specifies a max number of eleven decimal places, trimming insignificant zeros
-                        decForm = new DecimalFormat("#.###########");
-
-                        // Format the solution's decimal places
-                        solution = decForm.format(firstNum) + " / " + decForm.format(secondNum) + " = " + decForm.format(myCalc.divide(firstNum, secondNum));
-
-                        System.out.println(solution);
-                    }
-
-                    else {
-                        System.out.println("Expression could not be processed.");
-                    }
+                    System.out.println(handleInput(userInput, myCalc));
 
                 }
 

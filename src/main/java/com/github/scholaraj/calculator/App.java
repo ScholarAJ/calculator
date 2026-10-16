@@ -4,9 +4,11 @@ import java.util.Scanner;
 import java.util.regex.*;
 import java.text.DecimalFormat;
 
+// Class for CLI
 public final class App {
 
-    public static String handleInput(String userInput, Calculator myCalc) {
+    // Method to handle userInput strings (Needs adjustment)
+    /*public static String handleInput(String userInput, Calculator myCalc) {
         // String array to store first and second numbers
         String[] numArray;
                     
@@ -98,12 +100,12 @@ public final class App {
         else {
             return "Expression could not be processed.";
         }
-    } 
+    } */
 
     public static void main(String[] args) {
         
         // Instance of Calculator class
-        Calculator myCalc = new Calculator();
+        /*Calculator myCalc = new Calculator();
 
         // Instance of Scanner to collect user input
         Scanner scnr = new Scanner(System.in);
@@ -125,13 +127,13 @@ public final class App {
 
         while (scnr.hasNextLine()) {
 
-            userInput = scnr.nextLine();
+            userInput = scnr.nextLine();*/
             
             /* NOTE: It is important to use the equals() method for comparing 
             Strings, as the equality operator only compares the references of 
             String objects rather than their sequence of characters. */
 
-            if (userInput.trim().equals("q") || userInput.trim().equals("quit")) {
+            /*if (userInput.trim().equals("q") || userInput.trim().equals("quit")) {
                 break;
             }
 
@@ -163,7 +165,7 @@ public final class App {
 
         scnr.close();
 
-        System.out.println("Have a nice day!");
+        System.out.println("Have a nice day!");*/
 
     }
 }

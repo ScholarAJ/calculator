@@ -1,19 +1,20 @@
 package com.github.scholaraj.calculator;
 
-import java.lang.Math;
+//import java.lang.Math;
 import java.util.ArrayList;
 
+// Class for calculator functions
 public class Calculator {
 
-    // String ArrayList to store past expressions (will edit to include solutions)
+    // String ArrayList to store past expressions
     private ArrayList<String> expHist;
 
     public Calculator() {
         expHist = new ArrayList<String>();
     }
 
-    // Private method to add an expression to expHist ArrayList
-    private void addExp(String exp) {
+    // Method to add an expression to expHist ArrayList
+    public void addExp(String exp) {
         expHist.add(exp);
     }
 
@@ -25,22 +26,22 @@ public class Calculator {
     }
 
     public double add(double firstNum, double secondNum) {
-        addExp(firstNum + " + " + secondNum);
+        //addExp(firstNum + " + " + secondNum);
         return firstNum + secondNum;
     }
 
     public double subtract(double firstNum, double secondNum) {
-        addExp(firstNum + " - " + secondNum);
+        //addExp(firstNum + " - " + secondNum);
         return firstNum - secondNum;
     }
 
     public double multiply(double firstNum, double secondNum) {
-        addExp(firstNum + " * " + secondNum);
+        //addExp(firstNum + " * " + secondNum);
         return firstNum * secondNum;
     }
 
     public double divide(double firstNum, double secondNum) {
-        addExp(firstNum + " / " + secondNum);
+        //addExp(firstNum + " / " + secondNum);
         return firstNum / secondNum;
     }
 

@@ -105,25 +105,25 @@ public final class App {
     public static void main(String[] args) {
         
         // Instance of Calculator class
-        /*Calculator myCalc = new Calculator();
+        Calculator myCalc = new Calculator();
 
         // Instance of Scanner to collect user input
         Scanner scnr = new Scanner(System.in);
 
-        System.out.println("Enter an expression:");*/
+        //System.out.println("Enter an expression:");
 
         // String to check user input
-        String userInput = "8 * (0 + 5) / 5";
+        String userInput = "(4 + 5 * 2) / 8 * 10";
 
         // Creates a new regular expression to validate input
         // NOTE: The pattern and calculator class currently work for only a single operator. 
-        /*Pattern regex = Pattern.compile("\\s*[0-9]+\\.?[0-9]*\\s*[\\+,\\-,\\*,\\/]\\s*[0-9]+\\.?[0-9]*");
+        Pattern regex = Pattern.compile("\\s*[0-9]+\\.?[0-9]*\\s*[\\+,\\-,\\*,\\/]\\s*[0-9]+\\.?[0-9]*");
 
         // Declares Matcher object to check against regex
         Matcher validator;
 
         // Boolean primitive to store result of validation
-        boolean valid;*/
+        boolean valid;
 
         /*while (scnr.hasNextLine()) {
 
@@ -167,7 +167,11 @@ public final class App {
 
         System.out.println("Have a nice day!");*/
 
-        System.out.println(InfixToPostfix.convert(userInput));
+        System.out.println("Infix expression: " + userInput);
+
+        System.out.println("Postfix expression: " + InfixToPostfix.convert(userInput));
+
+        System.out.println();
 
     }
 }

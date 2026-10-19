@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Calculator {
 
     // String ArrayList to store past expressions
+    // Note: Must edit to include answers
     private ArrayList<String> expHist;
 
     public Calculator() {

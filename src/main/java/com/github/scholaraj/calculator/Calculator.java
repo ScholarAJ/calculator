@@ -50,13 +50,13 @@ public class Calculator {
         return firstNum % secondNum;
     }
 
-    // Exponents, square roots, logs, and trig functions to be added later...
+    // Square roots, logs, and trig functions to be added later...
 
-    /*public double exponent(double firstNum, double secondNum) {
+    public double exponent(double firstNum, double secondNum) {
         return Math.pow(firstNum, secondNum); 
     }
 
-    public double squareRoot(double num) {
+    /*public double squareRoot(double num) {
         return Math.sqrt(num);
     }*/
 }

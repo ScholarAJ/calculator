@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 public final class App {
 
     // Method to handle userInput strings (Needs adjustment)
-    public static String handleInput(String userInput, Calculator myCalc) {
+    /*public static String handleInput(String userInput, Calculator myCalc) {
         // String array to store first and second numbers
         String[] numArray;
                     
@@ -100,32 +100,32 @@ public final class App {
         else {
             return "Expression could not be processed.";
         }
-    } 
+    } */
 
     public static void main(String[] args) {
         
         // Instance of Calculator class
-        Calculator myCalc = new Calculator();
+        /*Calculator myCalc = new Calculator();
 
         // Instance of Scanner to collect user input
         Scanner scnr = new Scanner(System.in);
 
-        System.out.println("Enter an expression:");
+        System.out.println("Enter an expression:");*/
 
         // String to check user input
-        String userInput;
+        String userInput = "8 * (0 + 5) / 5";
 
         // Creates a new regular expression to validate input
         // NOTE: The pattern and calculator class currently work for only a single operator. 
-        Pattern regex = Pattern.compile("\\s*[0-9]+\\.?[0-9]*\\s*[\\+,\\-,\\*,\\/]\\s*[0-9]+\\.?[0-9]*");
+        /*Pattern regex = Pattern.compile("\\s*[0-9]+\\.?[0-9]*\\s*[\\+,\\-,\\*,\\/]\\s*[0-9]+\\.?[0-9]*");
 
         // Declares Matcher object to check against regex
         Matcher validator;
 
         // Boolean primitive to store result of validation
-        boolean valid;
+        boolean valid;*/
 
-        while (scnr.hasNextLine()) {
+        /*while (scnr.hasNextLine()) {
 
             userInput = scnr.nextLine();
             
@@ -133,7 +133,7 @@ public final class App {
             Strings, as the equality operator only compares the references of 
             String objects rather than their sequence of characters. */
 
-            if (userInput.trim().equals("q") || userInput.trim().equals("quit")) {
+            /*if (userInput.trim().equals("q") || userInput.trim().equals("quit")) {
                 break;
             }
 
@@ -165,7 +165,9 @@ public final class App {
 
         scnr.close();
 
-        System.out.println("Have a nice day!");
+        System.out.println("Have a nice day!");*/
+
+        System.out.println(InfixToPostfix.convert(userInput));
 
     }
 }

@@ -79,6 +79,7 @@ public final class InfixToPostfix {
             else if (Character.isDigit(curr)) {
                 postfix += curr;
 
+                // If next char is an operator or whitespace, add space in postfix
                 if ((i + 1) < infix.length()) {
 
                     char nextChar = infix.charAt(i + 1);

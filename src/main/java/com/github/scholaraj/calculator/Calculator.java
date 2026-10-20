@@ -47,15 +47,19 @@ public class Calculator {
     }
 
     // Returns the modulo value of division (the remainder)
+    // NOTE: Still needs implementation
     public double remainder(double firstNum, double secondNum) {
         return firstNum % secondNum;
     }
 
-    // Square roots, logs, and trig functions to be added later...
-
+    
+    // Returns value of firstNum raised to power of secondNum
+    // NOTE: Still needs implementation
     public double exponent(double firstNum, double secondNum) {
         return Math.pow(firstNum, secondNum); 
     }
+
+    // Square roots, logs, and trig functions to be added later...
 
     /*public double squareRoot(double num) {
         return Math.sqrt(num);

@@ -46,7 +46,7 @@ public final class InfixToPostfix {
     }
 
     // Method to convert infix expression to postfix
-    // NOTE: Needs bug fixing for negative unary operator
+    // NOTE: Needs bug fixing for decimals and whitespace
     public static String convert(String infix) {
 
         // Stack object for storing operators 
@@ -70,9 +70,29 @@ public final class InfixToPostfix {
                 postfix += curr;
             }
 
+            // If decimal point appears next to number, append it normally
+            else if (curr == '.' && (i + 1) < infix.length() && infix.charAt(i + 1) != ' ') {
+                postfix += curr;
+            }
+
             // If current character is digit, add it to postfix
             else if (Character.isDigit(curr)) {
                 postfix += curr;
+
+                if ((i + 1) < infix.length()) {
+
+                    char nextChar = infix.charAt(i + 1);
+
+                    switch (nextChar) {
+                        case ' ', '*', '/', '+', '-':
+                            postfix += " ";
+
+                        default:
+                            break;
+                    }
+
+                }
+                
             }
 
             // If the current character is a left parenthesis, add it to stack
@@ -83,10 +103,12 @@ public final class InfixToPostfix {
             // If current character is right parenthesis, iterate through stack until left parenthesis
             else if (curr == ')') {
 
+                postfix += " ";
+
                 // Add operators from stack to postfix and remove them
                 while (!opStack.isEmpty() && opStack.peek() != '(') {
                     postfix += opStack.pop();
-                    //postfix += " ";
+                    postfix += " ";
                 }
 
                 // Remove left parenthesis from stack
@@ -101,7 +123,7 @@ public final class InfixToPostfix {
                     /*  If current character has precedence greater than top element of stack
                     or equal without right associativity, add to postfix. */
                     postfix += opStack.pop();
-                    //postfix += " ";
+                    postfix += " ";
 
                 }
 
@@ -113,8 +135,9 @@ public final class InfixToPostfix {
 
         // Pop left over operators
         while (!(opStack.isEmpty())) {
+            postfix += " ";
             postfix += opStack.pop();
-            //postfix += " ";
+            postfix += " ";
         }
 
         return postfix;

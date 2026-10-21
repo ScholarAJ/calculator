@@ -29,7 +29,7 @@ public final class App {
             val = val.trim();
 
             // If val is a number, add it to the stack
-            if (val.matches("\\-*[0-9]+\\.?[0-9]*")) {
+            if (val.matches("\\(?\\s*\\-*[0-9]+\\.?[0-9]*\\s*)?") || val.matches("\\(?\\s*\\-*[0-9]*\\.[0-9]+\\s*)?")) {
                 valStack.push(Double.parseDouble(val));
             }
 
@@ -152,7 +152,7 @@ public final class App {
         }
 
         else {
-            
+            System.out.println("Input is not valid");
         }
 
     }

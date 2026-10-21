@@ -61,7 +61,7 @@ public final class InfixToPostfix {
             char curr = infix.charAt(i);
 
             // If current character is whitespace, skip
-            if (curr == ' ') {
+            if (Character.isWhitespace(curr)) {
                 continue;
             }
 

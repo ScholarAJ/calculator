@@ -1,5 +1,6 @@
 package com.github.scholaraj.calculator;
 
+import java.text.DecimalFormat;
 //import java.lang.Math;
 import java.util.ArrayList;
 
@@ -8,22 +9,37 @@ public class Calculator {
 
     // String ArrayList to store past expressions
     // Note: Must edit to include answers
-    private ArrayList<String> expHist;
+    private ArrayList<Expression> expHist;
 
     public Calculator() {
-        expHist = new ArrayList<String>();
+        expHist = new ArrayList<Expression>();
     }
 
     // Method to add an expression to expHist ArrayList
-    public void addExp(String exp) {
+    public void addExp(Expression exp) {
         expHist.add(exp);
     }
 
     // Method to display expression history
     public void showHist() {
-        for (int i = 0; i < expHist.size(); i++) {
-            System.out.println(expHist.get(i));
-        } 
+
+        if (expHist.isEmpty()) {
+            System.out.print("\n" + "History is empty!" + "\n");
+        }
+
+        else {
+
+            System.out.println();
+
+            // For each Expression object stored in expHist, print stored expression and its solution
+            for (int i = 0; i < expHist.size(); i++) {
+                Expression exp = expHist.get(i);
+                System.out.println(exp.getExpression() + " = " + new DecimalFormat("#.###########").format(exp.getSolution()));
+            } 
+
+        }
+
+        
     }
 
     public double add(double firstNum, double secondNum) {

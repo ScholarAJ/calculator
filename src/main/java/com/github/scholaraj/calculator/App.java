@@ -29,7 +29,7 @@ public final class App {
             val = val.trim();
 
             // If val is a number, add it to the stack
-            if (val.matches("\\(?\\s*\\-*[0-9]+\\.?[0-9]*\\s*)?") || val.matches("\\(?\\s*\\-*[0-9]*\\.[0-9]+\\s*)?")) {
+            if (val.matches("\\(?\\s*\\-*[0-9]+\\.?[0-9]*\\s*\\)?") || val.matches("\\(?\\s*\\-*[0-9]*\\.[0-9]+\\s*\\)?")) {
                 valStack.push(Double.parseDouble(val));
             }
 
@@ -78,48 +78,47 @@ public final class App {
     public static void main(String[] args) {
         
         // Instance of Calculator class
-        /*Calculator myCalc = new Calculator();
+        Calculator myCalc = new Calculator();
 
         // Instance of Scanner to collect user input
         Scanner scnr = new Scanner(System.in);
 
-        System.out.println("Enter an expression:");*/
+        System.out.println("Enter an expression (whitespace is required):");
 
         // String to check user input
-        String userInput = "(4.056 * 5.234 + 2.0) / 8 * 10";
+        String userInput;
 
-        // Creates a new regular expression to validate input
-        // NOTE: Only works for single expressions currently
-        /*Pattern regex = Pattern.compile("\\s*\\-?[0-9]+\\.?[0-9]*\\s+[\\+,\\-,\\*,\\/]\\s+\\-?[0-9]+\\.?[0-9]*");
-
-        // Declares Matcher object to check against regex
-        Matcher validator;
-
-        // Boolean primitive to store result of validation
-        boolean valid;
+        // Instance of InputParser to validate user input
+        InputParser parser;
 
         while (scnr.hasNextLine()) {
 
-            userInput = scnr.nextLine();*/
+            userInput = scnr.nextLine();
             
             /* NOTE: It is important to use the equals() method for comparing 
             Strings, as the equality operator only compares the references of 
             String objects rather than their sequence of characters. */
 
-            /*if (userInput.trim().equals("q") || userInput.trim().equals("quit")) {
+            // If userInput is q or quit, exit program
+            if (userInput.trim().equals("q") || userInput.trim().equals("quit")) {
                 break;
+            }
+
+            // If userInput is h or history, show calculator expression history
+            else if (userInput.trim().equals("h") || userInput.trim().equals("history")) {
+                myCalc.showHist();
             }
 
             else {
 
-                // Creates new Matcher instance for current input
-                validator = regex.matcher(userInput);
+                // Creates parser with the given input
+                parser = new InputParser(userInput);
 
                 // Checks if the current input is valid
-                valid = validator.matches();
+                boolean valid = parser.isValid();
 
                 if (!valid) {
-                    System.out.println("Please enter a valid expression.");
+                    System.out.print("\n" + "Please enter a valid expression." + "\n");
                 }
 
                 else {
@@ -133,27 +132,20 @@ public final class App {
                     // Print formatted decimal to terminal
                     System.out.println(new DecimalFormat("#.###########").format(solution));
 
+                    // Adds new expression to calculator history
+                    myCalc.addExp(new Expression(userInput, solution));
+
                 }
 
             }
 
-            System.out.println("Enter an expression:");
+            System.out.print("\n" + "Enter an expression:" + "\n");
             
         } 
 
         scnr.close();
 
-        System.out.println("Have a nice day!");*/
-
-        InputParser parser = new InputParser(userInput);
-
-        if (parser.isValid()) {
-            System.out.println("Input is valid.");
-        }
-
-        else {
-            System.out.println("Input is not valid");
-        }
+        System.out.print("\n" + "Have a nice day!" + "\n");
 
     }
 }

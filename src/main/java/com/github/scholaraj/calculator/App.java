@@ -2,9 +2,6 @@ package com.github.scholaraj.calculator;
 
 import java.util.Scanner;
 import java.util.regex.*;
-
-//import javax.management.openmbean.ArrayType;
-
 import java.text.DecimalFormat;
 import java.util.ArrayDeque;
 
@@ -81,19 +78,19 @@ public final class App {
     public static void main(String[] args) {
         
         // Instance of Calculator class
-        Calculator myCalc = new Calculator();
+        /*Calculator myCalc = new Calculator();
 
         // Instance of Scanner to collect user input
         Scanner scnr = new Scanner(System.in);
 
-        //System.out.println("Enter an expression:");
+        System.out.println("Enter an expression:");*/
 
         // String to check user input
         String userInput = "(4.056 * 5.234 + 2.0) / 8 * 10";
 
         // Creates a new regular expression to validate input
-        // NOTE: The pattern and calculator class currently work for only a single operator. 
-        Pattern regex = Pattern.compile("\\s*\\-*[0-9]+\\.?[0-9]*\\s+[\\+,\\-,\\*,\\/]\\s+\\-*[0-9]+\\.?[0-9]*");
+        // NOTE: Only works for single expressions currently
+        /*Pattern regex = Pattern.compile("\\s*\\-?[0-9]+\\.?[0-9]*\\s+[\\+,\\-,\\*,\\/]\\s+\\-?[0-9]+\\.?[0-9]*");
 
         // Declares Matcher object to check against regex
         Matcher validator;
@@ -101,9 +98,9 @@ public final class App {
         // Boolean primitive to store result of validation
         boolean valid;
 
-        /*while (scnr.hasNextLine()) {
+        while (scnr.hasNextLine()) {
 
-            userInput = scnr.nextLine();
+            userInput = scnr.nextLine();*/
             
             /* NOTE: It is important to use the equals() method for comparing 
             Strings, as the equality operator only compares the references of 
@@ -127,9 +124,14 @@ public final class App {
 
                 else {
 
-                    //System.out.println("Expression is valid.");
+                    // Find postfix of userInput String
+                    String postfix = InfixToPostfix.convert(userInput);
 
-                    System.out.println(handleInput(InfixToPostfix.convert(userInput)));
+                    // Primitive to store solution of expression
+                    double solution = handleInput(postfix, myCalc);
+
+                    // Print formatted decimal to terminal
+                    System.out.println(new DecimalFormat("#.###########").format(solution));
 
                 }
 
@@ -143,13 +145,15 @@ public final class App {
 
         System.out.println("Have a nice day!");*/
 
-        System.out.println("Infix expression: " + userInput);
+        InputParser parser = new InputParser(userInput);
 
-        String postfix = InfixToPostfix.convert(userInput);
+        if (parser.isValid()) {
+            System.out.println("Input is valid.");
+        }
 
-        System.out.println("Postfix expression: " + postfix);
-
-        System.out.println("Solution: " + handleInput(postfix, myCalc));
+        else {
+            
+        }
 
     }
 }

@@ -3,101 +3,76 @@ package com.github.scholaraj.calculator;
 import java.util.Scanner;
 import java.util.regex.*;
 import java.text.DecimalFormat;
+import java.util.ArrayDeque;
 
+// Class for CLI
 public final class App {
 
-    public static String handleInput(String userInput, Calculator myCalc) {
-        // String array to store first and second numbers
-        String[] numArray;
+    // Method to handle postfix strings
+    public static double handleInput(String postfix, Calculator calc) {
+
+        // Primitive for storing solution
+        double solution;
+
+        // Stack for storing intermediate results
+        ArrayDeque<Double> valStack = new ArrayDeque<Double>();
+
+        // String array to store values
+        String[] stringVals = postfix.split(" ");
+
+        // Primitives for storing operands
+        double firstNum, secondNum;
+
+        // For each loop to iterate through stringVals
+        for (String val: stringVals) {
+
+            val = val.trim();
+
+            // If val is a number, add it to the stack
+            if (val.matches("\\(?\\s*\\-*[0-9]+\\.?[0-9]*\\s*\\)?") || val.matches("\\(?\\s*\\-*[0-9]*\\.[0-9]+\\s*\\)?")) {
+                valStack.push(Double.parseDouble(val));
+            }
+
+            // Otherwise, if val is an operator, evaluate current expression and push solution to stack
+            else {
+
+                switch (val) {
+                    case "*":
+                        secondNum = valStack.pop();
+                        firstNum = valStack.pop();
+                        valStack.push(calc.multiply(firstNum, secondNum));
+                        break;
+
+                    case "/":
+                        secondNum = valStack.pop();
+                        firstNum = valStack.pop();
+                        valStack.push(calc.divide(firstNum, secondNum));
+                        break;
+
+                    case "+":
+                        secondNum = valStack.pop();
+                        firstNum = valStack.pop();
+                        valStack.push(calc.add(firstNum, secondNum));
+                        break;
                     
-        // String to store formatted solution
-        String solution;
+                    case "-":
+                        secondNum = valStack.pop();
+                        firstNum = valStack.pop();
+                        valStack.push(calc.subtract(firstNum, secondNum));
+                        break;
 
-        // DecimalFormat object for formatting answer
-        DecimalFormat decForm;
+                    default:
+                        break;
+                }
 
-        // If the provided expression is addition, call related methods
-        if (userInput.indexOf("+") > -1) {
-                        
-            // Split userInput string into two substrings, divided by the addition operator
-            numArray = userInput.split("\\+");
-
-            // Parse through both substrings, assigning the double values to firstNum and secondNum
-            double firstNum = Double.parseDouble(numArray[0].trim());
-            double secondNum = Double.parseDouble(numArray[1].trim());
-
-            // Specifies a max number of eleven decimal places, trimming insignificant zeros
-            decForm = new DecimalFormat("#.###########");
-
-            // Format the solution's decimal places
-            solution = decForm.format(myCalc.add(firstNum, secondNum));
-
-            return solution;
+            }
 
         }
 
-        // If the provided expression is subtraction, call related methods
-        else if (userInput.indexOf("-") > -1) {
-
-            // Split userInput string into two substrings, divided by the subtraction operator
-            numArray = userInput.split("\\-");
-
-            // Parse through both substrings, assigning the double values to firstNum and secondNum
-            double firstNum = Double.parseDouble(numArray[0].trim());
-            double secondNum = Double.parseDouble(numArray[1].trim());
-
-            // Specifies a max number of eleven decimal places, trimming insignificant zeros
-            decForm = new DecimalFormat("#.###########");
-
-            // Format the solution's decimal places
-            solution = decForm.format(myCalc.subtract(firstNum, secondNum));
-
-            return solution;
-
-        }
-
-        // If the provided expression is multiplication, call related methods
-        else if (userInput.indexOf("*") > -1) {
-
-            // Split userInput string into two substrings, divided by the multiplication operator
-            numArray = userInput.split("\\*");
-
-            // Parse through both substrings, assigning the double values to firstNum and secondNum
-            double firstNum = Double.parseDouble(numArray[0].trim());
-            double secondNum = Double.parseDouble(numArray[1].trim());
-
-            // Specifies a max number of eleven decimal places, trimming insignificant zeros
-            decForm = new DecimalFormat("#.###########");
-
-            // Format the solution's decimal places
-            solution = decForm.format(myCalc.multiply(firstNum, secondNum));
-
-            return solution;
-
-        }
-
-        // If the provided expression is division, call related methods
-        else if (userInput.indexOf("/") > -1) {
-
-            // Split userInput string into two substrings, divided by the division operator
-            numArray = userInput.split("\\/");
-
-            // Parse through both substrings, assigning the double values to firstNum and secondNum
-            double firstNum = Double.parseDouble(numArray[0].trim());
-            double secondNum = Double.parseDouble(numArray[1].trim());
-
-            // Specifies a max number of eleven decimal places, trimming insignificant zeros
-            decForm = new DecimalFormat("#.###########");
-
-            // Format the solution's decimal places
-            solution = decForm.format(myCalc.divide(firstNum, secondNum));
-
-            return solution;
-        }
-
-        else {
-            return "Expression could not be processed.";
-        }
+        // After all expressions are evaluated, pop final solution from stack
+        solution =  valStack.pop();
+        
+        return solution;
     } 
 
     public static void main(String[] args) {
@@ -108,20 +83,13 @@ public final class App {
         // Instance of Scanner to collect user input
         Scanner scnr = new Scanner(System.in);
 
-        System.out.println("Enter an expression:");
+        System.out.println("Enter an expression (whitespace is required):");
 
         // String to check user input
         String userInput;
 
-        // Creates a new regular expression to validate input
-        // NOTE: The pattern and calculator class currently work for only a single operator. 
-        Pattern regex = Pattern.compile("\\s*[0-9]+\\.?[0-9]*\\s*[\\+,\\-,\\*,\\/]\\s*[0-9]+\\.?[0-9]*");
-
-        // Declares Matcher object to check against regex
-        Matcher validator;
-
-        // Boolean primitive to store result of validation
-        boolean valid;
+        // Instance of InputParser to validate user input
+        InputParser parser;
 
         while (scnr.hasNextLine()) {
 
@@ -131,39 +99,53 @@ public final class App {
             Strings, as the equality operator only compares the references of 
             String objects rather than their sequence of characters. */
 
+            // If userInput is q or quit, exit program
             if (userInput.trim().equals("q") || userInput.trim().equals("quit")) {
                 break;
             }
 
+            // If userInput is h or history, show calculator expression history
+            else if (userInput.trim().equals("h") || userInput.trim().equals("history")) {
+                myCalc.showHist();
+            }
+
             else {
 
-                // Creates new Matcher instance for current input
-                validator = regex.matcher(userInput);
+                // Creates parser with the given input
+                parser = new InputParser(userInput);
 
                 // Checks if the current input is valid
-                valid = validator.matches();
+                boolean valid = parser.isValid();
 
                 if (!valid) {
-                    System.out.println("Please enter a valid expression.");
+                    System.out.print("\n" + "Please enter a valid expression." + "\n");
                 }
 
                 else {
 
-                    //System.out.println("Expression is valid.");
+                    // Find postfix of userInput String
+                    String postfix = InfixToPostfix.convert(userInput);
 
-                    System.out.println(handleInput(userInput, myCalc));
+                    // Primitive to store solution of expression
+                    double solution = handleInput(postfix, myCalc);
+
+                    // Print formatted decimal to terminal
+                    System.out.println(new DecimalFormat("#.###########").format(solution));
+
+                    // Adds new expression to calculator history
+                    myCalc.addExp(new Expression(userInput, solution));
 
                 }
 
             }
 
-            System.out.println("Enter an expression:");
+            System.out.print("\n" + "Enter an expression:" + "\n");
             
         } 
 
         scnr.close();
 
-        System.out.println("Have a nice day!");
+        System.out.print("\n" + "Have a nice day!" + "\n");
 
     }
 }

@@ -18,6 +18,9 @@ public final class InfixToPostfix {
             case '/' : 
                 return 2;
 
+            case '%' : 
+                return 2;    
+
             case '+' :
                 return 1;
             
@@ -46,7 +49,6 @@ public final class InfixToPostfix {
     }
 
     // Method to convert infix expression to postfix
-    // NOTE: Needs bug fixing for decimals and whitespace
     public static String convert(String infix) {
 
         // Stack object for storing operators 
@@ -85,7 +87,7 @@ public final class InfixToPostfix {
                     char nextChar = infix.charAt(i + 1);
 
                     switch (nextChar) {
-                        case ' ', '*', '/', '+', '-':
+                        case ' ', '*', '/', '%', '+', '-':
                             postfix += " ";
 
                         default:

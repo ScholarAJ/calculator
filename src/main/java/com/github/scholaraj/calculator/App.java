@@ -1,7 +1,6 @@
 package com.github.scholaraj.calculator;
 
 import java.util.Scanner;
-import java.util.regex.*;
 import java.text.DecimalFormat;
 import java.util.ArrayDeque;
 
@@ -37,6 +36,12 @@ public final class App {
             else {
 
                 switch (val) {
+                    case "^":
+                        secondNum = valStack.pop();
+                        firstNum = valStack.pop();
+                        valStack.push(calc.exponent(firstNum, secondNum));
+                        break;
+
                     case "*":
                         secondNum = valStack.pop();
                         firstNum = valStack.pop();
@@ -48,6 +53,13 @@ public final class App {
                         firstNum = valStack.pop();
                         valStack.push(calc.divide(firstNum, secondNum));
                         break;
+
+                    case "%":
+                        secondNum = valStack.pop();
+                        firstNum = valStack.pop();
+                        valStack.push(calc.remainder(firstNum, secondNum));
+                        break;
+
 
                     case "+":
                         secondNum = valStack.pop();

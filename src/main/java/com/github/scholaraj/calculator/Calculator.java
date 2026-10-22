@@ -75,9 +75,6 @@ public class Calculator {
         return Math.pow(firstNum, secondNum); 
     }
 
-    // Square roots, logs, and trig functions to be added later...
+    // Square roots, logs, and trig functions to be added in the future...
 
-    /*public double squareRoot(double num) {
-        return Math.sqrt(num);
-    }*/
 }

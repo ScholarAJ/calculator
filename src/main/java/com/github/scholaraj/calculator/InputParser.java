@@ -7,8 +7,10 @@ package com.github.scholaraj.calculator;
 Grammar rules are as follows:
 
 Expression -> Term (("+" | "-") Term)*
-Term       -> Factor (("*" | "/") Factor)*
-Factor     -> ("-" Factor | Number | "(" Expression ")"
+Term       -> Factor (("*" | "/" | "%") Factor)*
+Factor     -> "-" Factor | Power
+Power      -> Primary ["^" Factor]
+Primary    -> Number | "(" Expression ")"
 
 */
 
@@ -25,6 +27,7 @@ public class InputParser {
         position = 0;
     }
     
+    // Method to check valid input
     public boolean isValid() {
 
         if (input.isEmpty()) return false;
@@ -94,7 +97,7 @@ public class InputParser {
         skipWhitespace();
 
         // If end of String is reached without dangling operators, return true
-        if (atEnd() || (currentChar() != '*' && currentChar() != '/')) {
+        if (atEnd() || (currentChar() != '*' && currentChar() != '/' && currentChar() != '%')) {
             return true;
         }
 
@@ -125,7 +128,42 @@ public class InputParser {
             return parseFactor();   
         }
 
-        // If left parenthesis precedes factor, increment position
+        return parsePower(); 
+
+    }
+
+    // Method to parse through exponent
+    private boolean parsePower() {
+
+        // If parsePrimary returns false, return false for entire expression
+        if (!parsePrimary()) return false;
+
+        skipWhitespace();
+
+        // If not at end of String and current character is ^, parse through next factor 
+        if (!atEnd() && currentChar() == '^') {
+
+            // Consumes ^
+            position++; 
+
+            return parseFactor();
+        }
+
+        // If no factor is included, return true
+        return true;
+
+    }
+
+    // Method to parse through a number or expression in parentheses
+    private boolean parsePrimary() {
+
+        skipWhitespace();
+
+        if (atEnd()) return false;
+
+        char current = currentChar();
+
+        // If left parenthesis precedes expression, increment position
         if (current == '(') {
 
             // Consumes ( 
@@ -146,10 +184,11 @@ public class InputParser {
             
         }
 
-        return parseNumber(); 
+        return parseNumber();
 
     }
 
+    // Method to parse through number itself (integer or decimal)
     private boolean parseNumber() {
 
         char current = currentChar();

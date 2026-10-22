@@ -135,17 +135,27 @@ public final class App {
 
                 else {
 
-                    // Find postfix of userInput String
-                    String postfix = InfixToPostfix.convert(userInput);
+                    try {
 
-                    // Primitive to store solution of expression
-                    double solution = handleInput(postfix, myCalc);
+                        // Find postfix of userInput String
+                        String postfix = InfixToPostfix.convert(userInput);
 
-                    // Print formatted decimal to terminal
-                    System.out.println(new DecimalFormat("#.###########").format(solution));
+                        // Primitive to store solution of expression
+                        double solution = handleInput(postfix, myCalc);
 
-                    // Adds new expression to calculator history
-                    myCalc.addExp(new Expression(userInput, solution));
+                        // Print formatted decimal to terminal
+                        System.out.println(new DecimalFormat("#.###########").format(solution));
+
+                        // Adds new expression to calculator history
+                        myCalc.addExp(new Expression(userInput, solution));
+
+                    }
+
+                    // Catches Exception if one occurs
+                    catch(Exception error) {
+                        System.out.println(error.getMessage());
+                    }
+                    
 
                 }
 

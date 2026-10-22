@@ -63,14 +63,12 @@ public class Calculator {
     }
 
     // Returns the modulo value of division (the remainder)
-    // NOTE: Still needs implementation
     public double remainder(double firstNum, double secondNum) {
         return firstNum % secondNum;
     }
 
     
     // Returns value of firstNum raised to power of secondNum
-    // NOTE: Still needs implementation
     public double exponent(double firstNum, double secondNum) {
         return Math.pow(firstNum, secondNum); 
     }

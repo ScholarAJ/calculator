@@ -101,7 +101,7 @@ public final class App {
         String userInput;
 
         // Instance of InputParser to validate user input
-        InputParser parser;
+        InputParser parser = new InputParser();
 
         while (scnr.hasNextLine()) {
 
@@ -123,8 +123,8 @@ public final class App {
 
             else {
 
-                // Creates parser with the given input
-                parser = new InputParser(userInput);
+                // Uses parser to read new input string
+                parser.readNew(userInput);
 
                 // Checks if the current input is valid
                 boolean valid = parser.isValid();

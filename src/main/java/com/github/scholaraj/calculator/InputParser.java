@@ -22,8 +22,17 @@ public class InputParser {
     // Current index in input
     private int position;
 
+    public InputParser() {
+        position = 0;
+    }
+
     public InputParser(String userInput) {
         input  = userInput;
+        position = 0;
+    }
+
+    public void readNew(String userInput) {
+        input = userInput;
         position = 0;
     }
     

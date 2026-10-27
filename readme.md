@@ -4,7 +4,7 @@ A simple calculator app with command-line functionality (graphical interface to 
 
 # Description
 
-A calculator app written in Java with a Maven project setup. 
+A calculator app written in Java with a Maven project setup. This app has a single dependency in JUnit but otherwise uses packages included with the Java language.
 
 # Installation
 

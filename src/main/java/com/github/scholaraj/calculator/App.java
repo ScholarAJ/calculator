@@ -7,6 +7,76 @@ import java.util.ArrayDeque;
 // Class for CLI
 public final class App {
 
+    public static void loopInput(Scanner scnr, Calculator calc) {
+        // String to check user input
+        String userInput;
+
+        // Instance of InputParser to validate user input
+        InputParser parser = new InputParser();
+
+        while (scnr.hasNextLine()) {
+
+            userInput = scnr.nextLine();
+            
+            /* NOTE: It is important to use the equals() method for comparing 
+            Strings, as the equality operator only compares the references of 
+            String objects rather than their sequence of characters. */
+
+            // If userInput is q or quit, exit program
+            if (userInput.trim().equals("q") || userInput.trim().equals("quit")) {
+                break;
+            }
+
+            // If userInput is h or history, show calculator expression history
+            else if (userInput.trim().equals("h") || userInput.trim().equals("history")) {
+                calc.showHist();
+            }
+
+            else {
+
+                // Uses parser to read new input string
+                parser.readNew(userInput);
+
+                // Checks if the current input is valid
+                boolean valid = parser.isValid();
+
+                if (!valid) {
+                    System.out.print("\n" + "Please enter a valid expression." + "\n");
+                }
+
+                else {
+
+                    try {
+
+                        // Find postfix of userInput String
+                        String postfix = InfixToPostfix.convert(userInput);
+
+                        // Primitive to store solution of expression
+                        double solution = handleInput(postfix, calc);
+
+                        // Print formatted decimal to terminal
+                        System.out.println(new DecimalFormat("#.###########").format(solution));
+
+                        // Adds new expression to calculator history
+                        calc.addExp(new Expression(userInput, solution));
+
+                    }
+
+                    // Catches Exception if one occurs
+                    catch(Exception error) {
+                        System.out.println(error.getMessage());
+                    }
+                    
+
+                }
+
+            }
+
+            System.out.print("\n" + "Enter an expression:" + "\n");
+            
+        } 
+    }
+
     // Method to handle postfix strings
     public static double handleInput(String postfix, Calculator calc) {
 
@@ -97,74 +167,10 @@ public final class App {
 
         System.out.println("Enter an expression (whitespace is required):");
 
-        // String to check user input
-        String userInput;
+        // Invokes method to loop input
+        loopInput(scnr, myCalc);
 
-        // Instance of InputParser to validate user input
-        InputParser parser = new InputParser();
-
-        while (scnr.hasNextLine()) {
-
-            userInput = scnr.nextLine();
-            
-            /* NOTE: It is important to use the equals() method for comparing 
-            Strings, as the equality operator only compares the references of 
-            String objects rather than their sequence of characters. */
-
-            // If userInput is q or quit, exit program
-            if (userInput.trim().equals("q") || userInput.trim().equals("quit")) {
-                break;
-            }
-
-            // If userInput is h or history, show calculator expression history
-            else if (userInput.trim().equals("h") || userInput.trim().equals("history")) {
-                myCalc.showHist();
-            }
-
-            else {
-
-                // Uses parser to read new input string
-                parser.readNew(userInput);
-
-                // Checks if the current input is valid
-                boolean valid = parser.isValid();
-
-                if (!valid) {
-                    System.out.print("\n" + "Please enter a valid expression." + "\n");
-                }
-
-                else {
-
-                    try {
-
-                        // Find postfix of userInput String
-                        String postfix = InfixToPostfix.convert(userInput);
-
-                        // Primitive to store solution of expression
-                        double solution = handleInput(postfix, myCalc);
-
-                        // Print formatted decimal to terminal
-                        System.out.println(new DecimalFormat("#.###########").format(solution));
-
-                        // Adds new expression to calculator history
-                        myCalc.addExp(new Expression(userInput, solution));
-
-                    }
-
-                    // Catches Exception if one occurs
-                    catch(Exception error) {
-                        System.out.println(error.getMessage());
-                    }
-                    
-
-                }
-
-            }
-
-            System.out.print("\n" + "Enter an expression:" + "\n");
-            
-        } 
-
+        // Closes Scanner
         scnr.close();
 
         System.out.print("\n" + "Have a nice day!" + "\n");

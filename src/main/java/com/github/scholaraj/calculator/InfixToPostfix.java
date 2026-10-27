@@ -143,6 +143,9 @@ public final class InfixToPostfix {
             postfix += " ";
         }
 
+        // Normalizes whitespace (if needed)
+        postfix = postfix.replaceAll("\\s+", " ").trim();
+
         return postfix;
 
     }

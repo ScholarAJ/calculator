@@ -7,13 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class TestParser {
 
+    // Method to test String inputs
     @Test 
     void testInput() {
 
+        // Initializes parser instance
         InputParser parser = new InputParser();
-
+        
         assertAll("Input", () -> {
 
+            // Tests valid inputs for parser
             assertAll("Valid",
 
                 () -> {
@@ -43,6 +46,7 @@ public class TestParser {
 
             );
 
+            // Tests invalid inputs for parser
             assertAll("Invalid", 
 
                 () -> {

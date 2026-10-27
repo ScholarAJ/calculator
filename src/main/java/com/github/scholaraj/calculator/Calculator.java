@@ -43,34 +43,28 @@ public class Calculator {
     }
 
     public double add(double firstNum, double secondNum) {
-        //addExp(firstNum + " + " + secondNum);
         return firstNum + secondNum;
     }
 
     public double subtract(double firstNum, double secondNum) {
-        //addExp(firstNum + " - " + secondNum);
         return firstNum - secondNum;
     }
 
     public double multiply(double firstNum, double secondNum) {
-        //addExp(firstNum + " * " + secondNum);
         return firstNum * secondNum;
     }
 
     public double divide(double firstNum, double secondNum) {
-        //addExp(firstNum + " / " + secondNum);
         return firstNum / secondNum;
     }
 
     // Returns the modulo value of division (the remainder)
-    // NOTE: Still needs implementation
     public double remainder(double firstNum, double secondNum) {
         return firstNum % secondNum;
     }
 
     
     // Returns value of firstNum raised to power of secondNum
-    // NOTE: Still needs implementation
     public double exponent(double firstNum, double secondNum) {
         return Math.pow(firstNum, secondNum); 
     }

@@ -10,16 +10,69 @@ public class TestParser {
     @Test 
     void testInput() {
 
-        InputParser parser;
+        InputParser parser = new InputParser();
 
         assertAll("Input", () -> {
-            assertAll("Valid", 
-                () -> {
-                    
-                }
-            );
-        });
 
+            assertAll("Valid",
+
+                () -> {
+                    parser.readNew("1 + 2 * 3");
+                    assertTrue(parser.isValid());
+                },
+
+                () -> {
+                    parser.readNew("(1 + 2) * 3");
+                    assertTrue(parser.isValid());
+                },
+
+                () -> {
+                    parser.readNew("-4.5");
+                    assertTrue(parser.isValid());
+                },
+
+                () -> {
+                    parser.readNew("2 ^ 3 ^ 2");
+                    assertTrue(parser.isValid());
+                },
+
+                () -> {
+                    parser.readNew("1 + (2 * 3)");
+                    assertTrue(parser.isValid());
+                }
+
+            );
+
+            assertAll("Invalid", 
+
+                () -> {
+                    parser.readNew("1 +");
+                    assertFalse(parser.isValid());
+                },
+
+                () -> {
+                    parser.readNew("1 ** 2");
+                    assertFalse(parser.isValid());
+                },
+
+                () -> {
+                    parser.readNew("(1 + 2");
+                    assertFalse(parser.isValid());
+                },
+
+                () -> {
+                    parser.readNew("1 2");
+                    assertFalse(parser.isValid());
+                },
+
+                () -> {
+                    parser.readNew("3..4");
+                    assertFalse(parser.isValid());
+                }
+
+            );
+
+        });
 
     }
 

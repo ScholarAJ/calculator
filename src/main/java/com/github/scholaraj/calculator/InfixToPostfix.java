@@ -5,7 +5,7 @@ import java.util.ArrayDeque;
 public final class InfixToPostfix {
 
     // Method to find precedence of operator
-    public static int getPrecedence(char operator) {
+    private static int getPrecedence(char operator) {
 
         // Switch statement to evaluate operator precedence
         switch (operator) {
@@ -34,7 +34,7 @@ public final class InfixToPostfix {
     } 
 
     // Method to check whether operator is right associative
-    public static boolean rightAssociative(char operator) {
+    private static boolean rightAssociative(char operator) {
 
         // If operator is of exponent, return true 
         if (operator == '^') {

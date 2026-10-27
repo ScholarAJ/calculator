@@ -57,6 +57,9 @@ public final class App {
                         // Print formatted decimal to terminal
                         System.out.println(new DecimalFormat("#.###########").format(solution));
 
+                        // Normalizes whitespace (if needed)
+                        userInput = userInput.replaceAll("\\s+", " ").trim();
+
                         // Adds new expression to calculator history
                         calc.addExp(new Expression(userInput, solution));
 

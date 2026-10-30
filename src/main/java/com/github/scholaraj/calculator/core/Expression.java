@@ -1,4 +1,4 @@
-package com.github.scholaraj.calculator;
+package com.github.scholaraj.calculator.core;
 
 // Class for storing calculator entries
 public class Expression {

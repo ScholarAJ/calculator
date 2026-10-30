@@ -1,4 +1,4 @@
-package com.github.scholaraj.calculator;
+package com.github.scholaraj.calculator.core;
 
 import java.util.ArrayDeque;
 

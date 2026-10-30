@@ -1,6 +1,9 @@
 package com.github.scholaraj.calculator;
 
 import java.util.Scanner;
+
+import com.github.scholaraj.calculator.core.Calculator;
+
 import java.text.DecimalFormat;
 import java.util.ArrayDeque;
 
@@ -86,7 +89,7 @@ public final class App extends Application {
             System.out.print("\n" + "Enter an expression:" + "\n");
             
         } 
-    }
+    }*/
 
     // Method to handle postfix strings
     public static double handleInput(String postfix, Calculator calc) {
@@ -166,7 +169,7 @@ public final class App extends Application {
         solution =  valStack.pop();
         
         return solution;
-    } */
+    } 
 
     // Instance of Calculator class
     Calculator myCalc = new Calculator();

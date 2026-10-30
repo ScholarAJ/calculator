@@ -2,7 +2,7 @@ package com.github.scholaraj.calculator;
 
 import java.util.Scanner;
 
-import com.github.scholaraj.calculator.core.Calculator;
+import com.github.scholaraj.calculator.core.*;
 
 import java.text.DecimalFormat;
 import java.util.ArrayDeque;
@@ -181,7 +181,9 @@ public final class App extends Application {
     public void start(Stage stage) throws IOException {
 
         // Initializes scene with primary.fxml
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("index"), 250, 400);
+
+        scene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
 
         // Assigns stage parameter with FXML stored in scene
         stage.setScene(scene);

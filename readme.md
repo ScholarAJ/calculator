@@ -1,10 +1,10 @@
 # Calculator App
 
-A simple calculator app with command-line functionality (graphical interface to be added later). 
+A simple calculator app with a graphical interface written in JavaFX.
 
 # Description
 
-A calculator app written in Java with a Maven project setup. This app has a single dependency in JUnit but otherwise uses packages included with the Java language.
+A calculator app written in Java with a Maven project setup. This app has two dependencies in JUnit and JavaFX but otherwise uses packages included with the Java language.
 
 # Installation
 

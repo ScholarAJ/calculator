@@ -91,89 +91,6 @@ public final class App extends Application {
         } 
     }*/
 
-    // Method to handle postfix strings
-    public static double handleInput(String postfix, Calculator calc) {
-
-        // Primitive for storing solution
-        double solution;
-
-        // Stack for storing intermediate results
-        ArrayDeque<Double> valStack = new ArrayDeque<Double>();
-
-        // String array to store values
-        String[] stringVals = postfix.split(" ");
-
-        // Primitives for storing operands
-        double firstNum, secondNum;
-
-        // For each loop to iterate through stringVals
-        for (String val: stringVals) {
-
-            val = val.trim();
-
-            // If val is a number, add it to the stack
-            if (val.matches("\\(?\\s*\\-*[0-9]+\\.?[0-9]*\\s*\\)?") || val.matches("\\(?\\s*\\-*[0-9]*\\.[0-9]+\\s*\\)?")) {
-                valStack.push(Double.parseDouble(val));
-            }
-
-            // Otherwise, if val is an operator, evaluate current expression and push solution to stack
-            else {
-
-                switch (val) {
-                    case "^":
-                        secondNum = valStack.pop();
-                        firstNum = valStack.pop();
-                        valStack.push(calc.exponent(firstNum, secondNum));
-                        break;
-
-                    case "*":
-                        secondNum = valStack.pop();
-                        firstNum = valStack.pop();
-                        valStack.push(calc.multiply(firstNum, secondNum));
-                        break;
-
-                    case "/":
-                        secondNum = valStack.pop();
-                        firstNum = valStack.pop();
-                        valStack.push(calc.divide(firstNum, secondNum));
-                        break;
-
-                    case "%":
-                        secondNum = valStack.pop();
-                        firstNum = valStack.pop();
-                        valStack.push(calc.remainder(firstNum, secondNum));
-                        break;
-
-
-                    case "+":
-                        secondNum = valStack.pop();
-                        firstNum = valStack.pop();
-                        valStack.push(calc.add(firstNum, secondNum));
-                        break;
-                    
-                    case "-":
-                        secondNum = valStack.pop();
-                        firstNum = valStack.pop();
-                        valStack.push(calc.subtract(firstNum, secondNum));
-                        break;
-
-                    default:
-                        break;
-                }
-
-            }
-
-        }
-
-        // After all expressions are evaluated, pop final solution from stack
-        solution =  valStack.pop();
-        
-        return solution;
-    } 
-
-    // Instance of Calculator class
-    Calculator myCalc = new Calculator();
-
     // Container for FXML content
     private static Scene scene;
 
@@ -181,7 +98,7 @@ public final class App extends Application {
     public void start(Stage stage) throws IOException {
 
         // Initializes scene with primary.fxml
-        scene = new Scene(loadFXML("index"), 250, 400);
+        scene = new Scene(loadFXML("index"), 250, 375);
 
         scene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
 

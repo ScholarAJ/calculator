@@ -4,5 +4,15 @@
 
 .button {
     -fx-background-color: red;
+    -fx-background-radius: 10px;
     -fx-text-fill: white;
+    -fx-min-width: 50px;
+    -fx-min-height: 40px;
+}
+
+#calcContainer {
+    -fx-alignment: bottom-center;
+    -fx-min-width: 250px;
+    -fx-hgap: 8px;
+    -fx-vgap: 8px;
 }

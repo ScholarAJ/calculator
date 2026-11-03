@@ -100,6 +100,7 @@ public final class App extends Application {
         // Initializes scene with primary.fxml
         scene = new Scene(loadFXML("index"), 250, 375);
 
+        // Retrieves stylesheet for scene
         scene.getStylesheets().add(App.class.getResource("styles.css").toExternalForm());
 
         // Assigns stage parameter with FXML stored in scene

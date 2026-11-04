@@ -4,13 +4,23 @@ import java.util.ArrayDeque;
 
 import com.github.scholaraj.calculator.core.Calculator;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventTarget;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.TextField;
+
 public class Controller {
 
     // Instance of Calculator class
     Calculator myCalc = new Calculator();
+
+    @FXML TextField outputScreen;
+    @FXML GridPane buttonContainer;
     
     // Method to handle postfix strings
-    public static double handleInput(String postfix, Calculator calc) {
+    public double handleInput(String postfix, Calculator calc) {
 
         // Primitive for storing solution
         double solution;
@@ -87,6 +97,45 @@ public class Controller {
         solution =  valStack.pop();
         
         return solution;
-    } 
+    }
+
+    private void printToScreen(String val) {
+
+        String text = outputScreen.getText(); 
+        
+    }
+
+    public void handleMouseClick(ActionEvent e) {
+        
+        EventTarget target = e.getTarget();
+
+        String value = ((Button) target).getText();
+
+        switch (value) {
+
+            case "1", "2", "3", "4", "5", 
+            "6", "7", "8", "9", "0":
+                System.out.println(value);
+                break;
+            
+            case "+", "-", "x", "/", "%":
+                System.out.println(value);
+                break;
+
+            case ".":
+                System.out.println(value);
+                break;
+                
+            case "+/-": 
+                System.out.println("-");
+                break;
+
+            default:
+                break;
+        }
+
+        //System.out.println(((Button)target).getText());
+
+    }
 
 }

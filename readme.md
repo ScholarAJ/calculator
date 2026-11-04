@@ -38,3 +38,4 @@ This project is primarily written by myself with some guidance from Copilot, onl
 
 [JavaFX CSS Reference Guide](https://openjfx.io/javadoc/27/javafx.graphics/javafx/scene/doc-files/cssref.html)
 
+[Implementing JavaFX FXML Action Events](https://www.devkuma.com/en/docs/java-fx/fxml-action-event/)

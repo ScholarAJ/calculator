@@ -18,30 +18,30 @@
     <!--GridPane to format calculator buttons-->
     <GridPane fx:id="buttonContainer">
         <children>
-            <Button fx:id="delBtn" text="DEL" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <Button fx:id="clearBtn" text="C" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-            <Button fx:id="modBtn" text="\%" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-            <Button fx:id="divBtn" text="/" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+            <Button fx:id="delBtn" text="DEL" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="clearBtn" text="C" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="modBtn" text="\%" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="divBtn" text="/" GridPane.rowIndex="1" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
 
-            <Button fx:id="sevenBtn" text="7" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <Button fx:id="eightBtn" text="8" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-            <Button fx:id="nineBtn" text="9" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-            <Button fx:id="timesBtn" text="x" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+            <Button fx:id="sevenBtn" text="7" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="eightBtn" text="8" GridPane.rowIndex="2" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="nineBtn" text="9" GridPane.rowIndex="2" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="timesBtn" text="x" GridPane.rowIndex="2" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
 
-            <Button fx:id="fourBtn" text="4" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <Button fx:id="fiveBtn" text="5" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-            <Button fx:id="sixBtn" text="6" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
-            <Button fx:id="minusBtn" text="-" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+            <Button fx:id="fourBtn" text="4" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="fiveBtn" text="5" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="sixBtn" text="6" GridPane.rowIndex="3" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="minusBtn" text="-" GridPane.rowIndex="3" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
 
-            <Button fx:id="oneBtn" text="1" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <Button fx:id="twoBtn" text="2" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-            <Button fx:id="threeBtn" text="3" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
-            <Button fx:id="plusBtn" text="+" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+            <Button fx:id="oneBtn" text="1" GridPane.rowIndex="4" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="twoBtn" text="2" GridPane.rowIndex="4" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="threeBtn" text="3" GridPane.rowIndex="4" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="plusBtn" text="+" GridPane.rowIndex="4" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
 
-            <Button fx:id="signBtn" text="+/-" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <Button fx:id="zeroBtn" text="0" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-            <Button fx:id="decBtn" text="." GridPane.rowIndex="5" GridPane.columnIndex="2"/>
-            <Button fx:id="equalsBtn" text="=" GridPane.rowIndex="5" GridPane.columnIndex="3"/>
+            <Button fx:id="signBtn" text="+/-" GridPane.rowIndex="5" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="zeroBtn" text="0" GridPane.rowIndex="5" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="decBtn" text="." GridPane.rowIndex="5" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="equalsBtn" text="=" GridPane.rowIndex="5" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
         </children>
     </GridPane>
     

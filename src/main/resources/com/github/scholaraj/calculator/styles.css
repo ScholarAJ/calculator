@@ -35,3 +35,10 @@
     -fx-background-color: lightgreen;
     -fx-readonly: true;
 }
+
+/* Styling for pressed button */
+#buttonContainer :pressed {
+    -fx-background-color: orange;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}

@@ -99,39 +99,117 @@ public class Controller {
         return solution;
     }
 
-    private void printToScreen(String val) {
+    // Method to reset outputString
+    private void clearScreen() {
 
-        String text = outputScreen.getText(); 
-        
+        outputScreen.setText("0");
+
     }
 
+    // Method to handle whitespace for operators
+    private void handleWhitespace(String val) {
+
+        // Retrieves text from outputScreen
+        String text = outputScreen.getText();
+
+        // Switch statement for provided String
+        switch (val) {
+
+            // If val is an operator, append whitespace to text
+            case "+", "-", "x", "/", "%":
+                text += " ";
+                outputScreen.setText(text);
+                break;
+
+            // Otherwise, break statement and change nothing
+            default:
+                break;
+
+        }
+
+    }
+
+    private void printToScreen(String val) {
+
+        // Retrieves text from outputScreen
+        String text = outputScreen.getText();
+        
+        // If outputScreen is empty, add new value as text
+        if (text.equals("0")) {
+
+            outputScreen.setText(val); 
+
+        }
+
+        // Otherwise, append val to text
+        else {
+
+            //char currChar = text.charAt(text.length() - 2);
+
+            // Switch statement for provided String
+            switch (val) {
+
+                case "1", "2", "3", "4", "5", 
+                "6", "7", "8", "9", "0":
+                    text = text + val;
+                    break;
+
+                case "+", "-", "x", "/", "%":
+                    text = text + val + " ";
+                    break;
+                    
+                case ".":
+                    text = text + val; 
+                    break;    
+
+            }
+
+            outputScreen.setText(text); 
+
+        }
+
+    }
+
+    // Method to handle button press
     public void handleMouseClick(ActionEvent e) {
         
+        // Retrieves target element of event
         EventTarget target = e.getTarget();
 
+        // Converts element and retrieves text String
         String value = ((Button) target).getText();
 
+        // Switch statement for value
         switch (value) {
 
             case "1", "2", "3", "4", "5", 
             "6", "7", "8", "9", "0":
-                System.out.println(value);
+                //System.out.println(value);
+                printToScreen(value);
                 break;
             
             case "+", "-", "x", "/", "%":
-                System.out.println(value);
+                //System.out.println(value);
+                handleWhitespace(value);
+                printToScreen(value);
                 break;
 
             case ".":
-                System.out.println(value);
+                printToScreen(value);
                 break;
                 
             case "+/-": 
                 System.out.println("-");
                 break;
 
+            // If button's value is C, clear screen    
+            case "C": 
+                clearScreen();
+                break;
+
             default:
                 break;
+            
         }
 
         //System.out.println(((Button)target).getText());

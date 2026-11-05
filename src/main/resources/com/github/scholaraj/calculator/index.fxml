@@ -26,7 +26,7 @@
             <Button fx:id="sevenBtn" text="7" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
             <Button fx:id="eightBtn" text="8" GridPane.rowIndex="2" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
             <Button fx:id="nineBtn" text="9" GridPane.rowIndex="2" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
-            <Button fx:id="timesBtn" text="x" GridPane.rowIndex="2" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
+            <Button fx:id="timesBtn" text="*" GridPane.rowIndex="2" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
 
             <Button fx:id="fourBtn" text="4" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
             <Button fx:id="fiveBtn" text="5" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#handleMouseClick"/>

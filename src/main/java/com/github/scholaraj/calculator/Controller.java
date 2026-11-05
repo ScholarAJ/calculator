@@ -1,6 +1,7 @@
 package com.github.scholaraj.calculator;
 
 import java.util.ArrayDeque;
+import java.text.DecimalFormat;
 
 import com.github.scholaraj.calculator.core.*;
 
@@ -14,13 +15,16 @@ import javafx.scene.control.TextField;
 public class Controller {
 
     // Instance of Calculator class
-    Calculator myCalc = new Calculator();
+    private Calculator myCalc = new Calculator();
+
+    // Instance of InputParser class
+    private InputParser myPars = new InputParser();
 
     @FXML TextField outputScreen;
     @FXML GridPane buttonContainer;
     
     // Method to handle postfix strings
-    public double handlePostfix(String postfix, Calculator calc) {
+    private double handlePostfix(String postfix, Calculator calc) {
 
         // Primitive for storing solution
         double solution;
@@ -94,9 +98,40 @@ public class Controller {
         }
 
         // After all expressions are evaluated, pop final solution from stack
-        solution =  valStack.pop();
+        solution = valStack.pop();
         
         return solution;
+    }
+
+    private void evalExp() {
+
+        // Retrieves text from outputScreen
+        String text = outputScreen.getText();
+
+        // Parse expression from text
+        myPars.readNew(text);
+
+        // If expression is valid, evaluate
+        if (myPars.isValid()) {
+
+            // Convert given expression to postfix
+            String postfix = InfixToPostfix.convert(text);
+
+            // Evaluate full postfix expression
+            Double solution = handlePostfix(postfix, myCalc);
+
+            // Add formatted solution to text
+            text = new DecimalFormat("#.###########").format(solution);
+
+        }
+
+        // Otherwise, clear text
+        else {
+            text = "0";
+        }
+
+        // Update expression on outputScreen
+        outputScreen.setText(text);
     }
 
     // Method to delete current number or operator
@@ -163,7 +198,7 @@ public class Controller {
         switch (val) {
 
             // If val is an operator, append whitespace to text
-            case "+", "-", "x", "/", "%":
+            case "+", "-", "*", "/", "%":
                 text += " ";
                 outputScreen.setText(text);
                 break;
@@ -189,10 +224,10 @@ public class Controller {
             char currChar = text.charAt(text.length() - 2);
 
             // If currChar is operator, refuse second operator in val
-            if (currChar == '+' || currChar == '-' || currChar == 'x' || currChar == '/' || currChar == '%') {
+            if (currChar == '+' || currChar == '-' || currChar == '*' || currChar == '/' || currChar == '%') {
 
                 // If val is second arithmetic operator, return false
-                if (val.equals("+") || val.equals("-") || val.equals("x") || val.equals("/") || val.equals("%")) {
+                if (val.equals("+") || val.equals("-") || val.equals("*") || val.equals("/") || val.equals("%")) {
                     return false;
                 }
 
@@ -239,7 +274,7 @@ public class Controller {
             if (currChar == '0' || currChar == '1' || currChar == '2' || currChar == '3' || currChar == '4' || currChar == '5' || currChar == '6' || currChar == '7' || currChar == '8' || currChar == '9') {
 
                 // If val is operator, return true
-                if (val.equals("+") || val.equals("-") || val.equals("x") || val.equals("/") || val.equals("%")) {
+                if (val.equals("+") || val.equals("-") || val.equals("*") || val.equals("/") || val.equals("%")) {
                     return true;
                 }
 
@@ -292,7 +327,7 @@ public class Controller {
                     text = text + val;
                     break;
 
-                case "+", "-", "x", "/", "%":
+                case "+", "-", "*", "/", "%":
                     text = text + val + " ";
                     break;
                     
@@ -326,7 +361,7 @@ public class Controller {
                 printToScreen(value);
                 break;
             
-            case "+", "-", "x", "/", "%":
+            case "+", "-", "*", "/", "%":
 
                 if (validOp(value)) {
                     handleWhitespace(value);
@@ -351,6 +386,11 @@ public class Controller {
             // If button's value is C, clear screen    
             case "C": 
                 clearScreen();
+                break;
+
+            // If button's value is =, evaluate current expression on outputScreen    
+            case "=": 
+                evalExp();
                 break;
 
             default:

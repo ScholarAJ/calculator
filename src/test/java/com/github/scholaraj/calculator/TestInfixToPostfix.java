@@ -1,6 +1,9 @@
 package com.github.scholaraj.calculator;
 
 import org.junit.jupiter.api.Test;
+
+import com.github.scholaraj.calculator.core.InfixToPostfix;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertAll;
 

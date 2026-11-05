@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--Import statements for fxml elements-->
+<!--NOTE: It is crucial to import elements or else there will be an invalid type error!-->
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+
+<!--Creates a VBox using the JavaFX namespace and Controller.java as a controller-->
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.scholaraj.calculator.Controller" fx:id="calcContainer">
+
+    <!--TextField to display current expressions and their solutions-->
+    <TextField fx:id="outputScreen" editable="false" focusTraversable="false">0</TextField>
+
+    <!--GridPane to format calculator buttons-->
+    <GridPane fx:id="buttonContainer">
+        <children>
+            <Button fx:id="delBtn" text="DEL" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="clearBtn" text="C" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="modBtn" text="\%" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="divBtn" text="/" GridPane.rowIndex="1" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
+
+            <Button fx:id="sevenBtn" text="7" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="eightBtn" text="8" GridPane.rowIndex="2" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="nineBtn" text="9" GridPane.rowIndex="2" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="timesBtn" text="*" GridPane.rowIndex="2" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
+
+            <Button fx:id="fourBtn" text="4" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="fiveBtn" text="5" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="sixBtn" text="6" GridPane.rowIndex="3" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="minusBtn" text="-" GridPane.rowIndex="3" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
+
+            <Button fx:id="oneBtn" text="1" GridPane.rowIndex="4" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="twoBtn" text="2" GridPane.rowIndex="4" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="threeBtn" text="3" GridPane.rowIndex="4" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="plusBtn" text="+" GridPane.rowIndex="4" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
+
+            <Button fx:id="signBtn" text="+/-" GridPane.rowIndex="5" GridPane.columnIndex="0" onAction="#handleMouseClick"/>
+            <Button fx:id="zeroBtn" text="0" GridPane.rowIndex="5" GridPane.columnIndex="1" onAction="#handleMouseClick"/>
+            <Button fx:id="decBtn" text="." GridPane.rowIndex="5" GridPane.columnIndex="2" onAction="#handleMouseClick"/>
+            <Button fx:id="equalsBtn" text="=" GridPane.rowIndex="5" GridPane.columnIndex="3" onAction="#handleMouseClick"/>
+        </children>
+    </GridPane>
+    
+</VBox>

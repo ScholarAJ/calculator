@@ -1,6 +1,10 @@
 package com.github.scholaraj.calculator;
 
 import org.junit.jupiter.api.Test;
+
+import com.github.scholaraj.calculator.core.Calculator;
+import com.github.scholaraj.calculator.core.Expression;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertAll;

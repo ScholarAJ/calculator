@@ -1,10 +1,10 @@
 # Calculator App
 
-A simple calculator app with command-line functionality (graphical interface to be added later). 
+A simple calculator app with a graphical interface written in JavaFX.
 
 # Description
 
-A calculator app written in Java with a Maven project setup. This app has a single dependency in JUnit but otherwise uses packages included with the Java language.
+A calculator app written in Java with a Maven project setup. This app has two dependencies in JUnit and JavaFX but otherwise uses packages included with the Java language.
 
 # Installation
 
@@ -12,7 +12,7 @@ TBD
 
 # Sources
 
-This project is primarily written by myself with some guidance from Copilot, online forums such as DEV and FreeCodeCamp, and tutorials. Aside from that, I turned to sites like Tutorialspoint, GeeksforGeeks, and the official Java language specification provided by Oracle for help with syntax. The internet resources I used for code are provided below. 
+This project is primarily written by myself with some guidance from Copilot, online forums such as DEV and FreeCodeCamp, documentation of software tools, and tutorials.  The internet resources I used for code are provided below. 
 
 [How to handle order of operations in a calculator app](https://forum.freecodecamp.org/t/how-to-handle-order-of-operations-in-a-calculator-app/802350)
 
@@ -30,4 +30,12 @@ This project is primarily written by myself with some guidance from Copilot, onl
 
 [junit-examples repo by junit-team](https://github.com/junit-team/junit-examples/tree/r6.1.3/junit-jupiter-starter-maven)
 
+[Non-modular samples for Visual Studio Code](https://github.com/openjfx/samples/tree/master/IDE/VSCode/Non-Modular/Maven)
 
+[JavaFX Software Development Kit Version 27 API Specification](https://openjfx.io/javadoc/27/)
+
+[Introduction to FXML](https://openjfx.io/javadoc/27/javafx.fxml/javafx/fxml/doc-files/introduction_to_fxml.html)
+
+[JavaFX CSS Reference Guide](https://openjfx.io/javadoc/27/javafx.graphics/javafx/scene/doc-files/cssref.html)
+
+[Implementing JavaFX FXML Action Events](https://www.devkuma.com/en/docs/java-fx/fxml-action-event/)

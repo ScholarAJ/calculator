@@ -1,10 +1,14 @@
+// Package declaration
 package com.github.scholaraj.calculator;
 
+// Imports classes included with JDK
 import java.util.ArrayDeque;
 import java.text.DecimalFormat;
 
+// Imports all calculator classes from the core package
 import com.github.scholaraj.calculator.core.*;
 
+// Imports JavaFX classes
 import javafx.event.ActionEvent;
 import javafx.event.EventTarget;
 import javafx.fxml.FXML;

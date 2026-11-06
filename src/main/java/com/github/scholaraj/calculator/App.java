@@ -1,18 +1,14 @@
+// Package declaration
 package com.github.scholaraj.calculator;
 
-import java.util.Scanner;
-
-import com.github.scholaraj.calculator.core.*;
-
-import java.text.DecimalFormat;
-import java.util.ArrayDeque;
-
+// Imports JavaFX classes
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// Imports IOException objects included with JDK
 import java.io.IOException;
 
 // Class for CLI

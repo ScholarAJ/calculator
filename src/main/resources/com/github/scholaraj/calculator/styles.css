@@ -1,11 +1,11 @@
 /* Styling for base FXML */
 :root {
-    -fx-background-color: black;
+    -fx-background-color: rgb(71, 34, 34);
 }
 
 /* Styling for calculator buttons */
 .button {
-    -fx-background-color: red;
+    -fx-background-color: rgb(159, 94, 59);
 
     /* Rounds off square shape of button */
     -fx-background-radius: 10px;
@@ -46,7 +46,7 @@
     /* Colors text white */
     -fx-text-fill: white;
 
-    -fx-background-color: lightgreen;
+    -fx-background-color: rgba(89, 117, 105, 0.565);
 
     /* Removes editing from output textField */
     -fx-readonly: true;
@@ -55,7 +55,7 @@
 /* Styling for pressed button */
 #buttonContainer :pressed {
 
-    -fx-background-color: orange;
+    -fx-background-color: rgb(202, 129, 90);
 
     /* Scaling properties increase size of button temporarily */
     -fx-scale-x: 1.05;

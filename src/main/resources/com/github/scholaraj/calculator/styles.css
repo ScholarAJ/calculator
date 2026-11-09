@@ -1,10 +1,13 @@
 /* Styling for base FXML */
 :root {
+
     -fx-background-color: rgb(71, 34, 34);
+
 }
 
 /* Styling for calculator buttons */
 .button {
+
     -fx-background-color: rgb(159, 94, 59);
 
     /* Rounds off square shape of button */
@@ -17,17 +20,22 @@
 
     -fx-min-width: 50px;
     -fx-min-height: 40px;
+
 }
 
 /* Styling for VBox container */
 #calcContainer {
+
+    -fx-spacing: 5px;
     -fx-alignment: center;
     -fx-min-width: 250px;
     -fx-min-height: 375px;
+
 }
 
 /* Formatting for GridPane holding buttons */
 #buttonContainer {
+
     -fx-alignment: bottom-center;
 
     /* Specifies size of gap between columns */
@@ -35,10 +43,12 @@
 
     /* Specifies size of gap between rows */
     -fx-vgap: 8px;
+
 }
 
 /* Formatting and styling for output TextField */
 #outputScreen {
+
     -fx-min-height: 80px;
     -fx-max-width: 225px;
     -fx-font-size: 32;
@@ -50,6 +60,7 @@
 
     /* Removes editing from output textField */
     -fx-readonly: true;
+
 }
 
 /* Styling for pressed button */
@@ -60,4 +71,46 @@
     /* Scaling properties increase size of button temporarily */
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
+}
+
+/* Styling for history button */
+#histBtn {
+
+    -fx-background-color: rgb(34, 22, 15);
+
+    /* Rounds off square shape of button */
+    -fx-background-radius: 5px;
+
+    /* Colors text white */
+    -fx-text-fill: white;
+
+    -fx-font-size: 10;
+
+    /* Specifies a fixed size for the history button */
+    -fx-min-width: 40px;
+    -fx-min-height: 25px;
+    -fx-max-width: 40px;
+    -fx-max-height: 25px;
+
+}
+
+/* Styling for buttons at top */
+
+#topBtnRow {
+
+    -fx-max-width: 212px;
+
+    -fx-alignment: center-right;
+
+}
+
+
+/* Styling for history display */
+#histList {
+
+    -fx-max-width: 225px;
+    -fx-max-height: 240px;
+
+    -fx-background-color: rgba(89, 117, 105, 0.565);
+
 }

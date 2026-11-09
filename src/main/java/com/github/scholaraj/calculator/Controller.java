@@ -13,7 +13,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 
 public class Controller {
@@ -26,6 +28,7 @@ public class Controller {
 
     @FXML TextField outputScreen;
     @FXML GridPane buttonContainer;
+    @FXML VBox calcContainer;
     
     // Method to handle postfix strings
     private double handlePostfix(String postfix, Calculator calc) {
@@ -386,7 +389,33 @@ public class Controller {
             
         }
 
-        //System.out.println(((Button)target).getText());
+    }
+
+    public void displayHistory() {
+
+        if (buttonContainer.isVisible()) {
+
+            buttonContainer.setVisible(false);
+
+            buttonContainer.setManaged(false);
+
+            ListView<Expression> histList = new ListView<Expression>();
+
+            histList.setId("histList");
+
+            calcContainer.getChildren().addLast(histList);
+
+        }
+
+        else {
+
+            buttonContainer.setVisible(true);
+
+            buttonContainer.setManaged(true);
+
+            calcContainer.getChildren().removeLast();
+            
+        }
 
     }
 

@@ -1,15 +1,21 @@
+// Package declaration
 package com.github.scholaraj.calculator;
 
+// Imports classes included with JDK
 import java.util.ArrayDeque;
 import java.text.DecimalFormat;
 
+// Imports all calculator classes from the core package
 import com.github.scholaraj.calculator.core.*;
 
+// Imports JavaFX classes
 import javafx.event.ActionEvent;
 import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.TextField;
 
 public class Controller {
@@ -22,6 +28,7 @@ public class Controller {
 
     @FXML TextField outputScreen;
     @FXML GridPane buttonContainer;
+    @FXML VBox calcContainer;
     
     // Method to handle postfix strings
     private double handlePostfix(String postfix, Calculator calc) {
@@ -120,6 +127,9 @@ public class Controller {
             // Evaluate full postfix expression
             Double solution = handlePostfix(postfix, myCalc);
 
+            // After evalation, create new Expression and add it to expression history
+            myCalc.addExp(new Expression(text, solution));
+
             // Add formatted solution to text
             text = new DecimalFormat("#.###########").format(solution);
 
@@ -168,23 +178,23 @@ public class Controller {
         String text = outputScreen.getText();
 
         // Retrieves starting index of number after whitespace
-        int numberStart = text.lastIndexOf(" ") + 1;
+        int numStart = text.lastIndexOf(" ") + 1;
 
         // Assigns currentNumber with substring of text
-        String currentNumber = text.substring(numberStart);
+        String currentNum = text.substring(numStart);
 
         // If currentNumber already has sign, toggle off
-        if (currentNumber.startsWith("-")) {
-            currentNumber = currentNumber.substring(1);
+        if (currentNum.startsWith("-")) {
+            currentNum = currentNum.substring(1);
         }
 
         // Otherwise, attach sign to currentNumber
         else {
-            currentNumber = "-" + currentNumber;
+            currentNum = "-" + currentNum;
         }
 
         // Update expression on outputScreen    
-        outputScreen.setText(text.substring(0, numberStart) + currentNumber);
+        outputScreen.setText(text.substring(0, numStart) + currentNum);
 
     }
 
@@ -217,14 +227,20 @@ public class Controller {
         // Retrieves text from outputScreen
         String text = outputScreen.getText();
 
-        // If text has 2 or more characters, check last character
+        // Retrieves starting index of operator or number after whitespace
+        int startIndex = text.lastIndexOf(" ") + 1;
+
+        // If text string is longer than 2 characters, check operator validity
         if (text.length() >= 2) {
 
-            // Retrieve last character before whitespace
-            char currChar = text.charAt(text.length() - 2);
+            /* If current ends with whitespace, assign with previous operator, 
+            otherwise assign with number at startIndex */
+            String current = text.endsWith(" ") 
+            ? text.substring((text.length() - 2), (text.length() - 1)) 
+            : text.substring(startIndex);
 
-            // If currChar is operator, refuse second operator in val
-            if (currChar == '+' || currChar == '-' || currChar == '*' || currChar == '/' || currChar == '%') {
+            // If current is operator, refuse second operator in val
+            if (current.equals("+") || current.equals("-") || current.equals("*") || current.equals("/") || current.equals("%")) {
 
                 // If val is second arithmetic operator, return false
                 if (val.equals("+") || val.equals("-") || val.equals("*") || val.equals("/") || val.equals("%")) {
@@ -243,63 +259,41 @@ public class Controller {
 
             }
 
-            // If currChar is decimal, reject second consecutive decimal
-            else if (currChar == '.') {
+            // If current contains decimal, refuse second decimal in number
+            else if (current.indexOf(".") > -1) {
 
                 // If val is second decimal, return false
                 if (val.equals(".")) {
                     return false;
                 }
 
-                // Otherwise, return true
-                else {
-                    return true;
-                }
-
-            }
-
-            else {
-                return true;
-            }
-
-        }
-
-        // If text is just single character, check character at starting index
-        else if (text.length() == 1) {
-
-            // Retrieve character at starting index
-            char currChar = text.charAt(text.length() - 1);
-
-            // If currChar is digit, check following character in val
-            if (currChar == '0' || currChar == '1' || currChar == '2' || currChar == '3' || currChar == '4' || currChar == '5' || currChar == '6' || currChar == '7' || currChar == '8' || currChar == '9') {
-
-                // If val is operator, return true
-                if (val.equals("+") || val.equals("-") || val.equals("*") || val.equals("/") || val.equals("%")) {
-                    return true;
-                }
-
-                // If val is decimal, return true
-                else if (val.equals(".")) {
-                    return true;
-                }
-
-                // If val is second consecutive digit, return true
+                // If val is digit, return true
                 else if (val.equals("0") || val.equals("1") || val.equals("2") || val.equals("3") || val.equals("4") || val.equals("5") || val.equals("6") || val.equals("7") || val.equals("8") || val.equals("9")) {
                     return true;
                 }
 
-                // Otherwise return false
+                // If val is operator, return true
+                else if (val.equals("+") || val.equals("-") || val.equals("*") || val.equals("/") || val.equals("%")) {
+                    return true;
+                }
+
+                // Otherwise, return false
                 else {
                     return false;
                 }
 
             }
 
+            // Otherwise, return true (if current is simply number)
+            else {
+                return true;
+            }
+
         }
 
-        // Otherwise, return false for unknown input
-        return false;
-
+        // Otherwise, return true if only one number is onscreen
+        return true;
+        
     }
 
     // Method to handle arithmetic display
@@ -398,7 +392,43 @@ public class Controller {
             
         }
 
-        //System.out.println(((Button)target).getText());
+    }
+
+    public void displayHistory() throws CloneNotSupportedException {
+
+        // If calculator buttons are visible, remove them
+        if (buttonContainer.isVisible()) {
+
+            // Hides buttonContainer
+            buttonContainer.setVisible(false);
+            // Removes formatting from FXML
+            buttonContainer.setManaged(false);
+
+            // Creates a new ListView element
+            ListView<Expression> histList = new ListView<Expression>();
+
+            // Assigns element with id histList
+            histList.setId("histList");
+
+            // Adds all items in calculator history to histList's ObservableList
+            histList.getItems().addAll(myCalc.getHist());
+
+            // Adds created ListView element to scene graph
+            calcContainer.getChildren().addLast(histList);
+
+        }
+
+        else {
+
+            // Shows buttonContainer
+            buttonContainer.setVisible(true);
+            // Formats buttonContainer
+            buttonContainer.setManaged(true);
+
+            // Removes histList from scene graph
+            calcContainer.getChildren().removeLast();
+            
+        }
 
     }
 

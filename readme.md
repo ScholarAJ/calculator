@@ -41,3 +41,5 @@ This project is primarily written by myself with some guidance from Copilot, onl
 [Implementing JavaFX FXML Action Events](https://www.devkuma.com/en/docs/java-fx/fxml-action-event/)
 
 [JavaFX | Group Class](https://www.geeksforgeeks.org/java/javafx-group-class/)
+
+[clone() Method - Object Cloning in Java](https://www.geeksforgeeks.org/java/clone-method-in-java-2/)

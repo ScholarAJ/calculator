@@ -127,6 +127,9 @@ public class Controller {
             // Evaluate full postfix expression
             Double solution = handlePostfix(postfix, myCalc);
 
+            // After evalation, create new Expression and add it to expression history
+            myCalc.addExp(new Expression(text, solution));
+
             // Add formatted solution to text
             text = new DecimalFormat("#.###########").format(solution);
 
@@ -391,28 +394,38 @@ public class Controller {
 
     }
 
-    public void displayHistory() {
+    public void displayHistory() throws CloneNotSupportedException {
 
+        // If calculator buttons are visible, remove them
         if (buttonContainer.isVisible()) {
 
+            // Hides buttonContainer
             buttonContainer.setVisible(false);
-
+            // Removes formatting from FXML
             buttonContainer.setManaged(false);
 
+            // Creates a new ListView element
             ListView<Expression> histList = new ListView<Expression>();
 
+            // Assigns element with id histList
             histList.setId("histList");
 
+            // Adds all items in calculator history to histList's ObservableList
+            histList.getItems().addAll(myCalc.getHist());
+
+            // Adds created ListView element to scene graph
             calcContainer.getChildren().addLast(histList);
 
         }
 
         else {
 
+            // Shows buttonContainer
             buttonContainer.setVisible(true);
-
+            // Formats buttonContainer
             buttonContainer.setManaged(true);
 
+            // Removes histList from scene graph
             calcContainer.getChildren().removeLast();
             
         }

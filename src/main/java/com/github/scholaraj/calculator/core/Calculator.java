@@ -1,14 +1,11 @@
 package com.github.scholaraj.calculator.core;
 
-import java.text.DecimalFormat;
-//import java.lang.Math;
 import java.util.ArrayList;
 
 // Class for calculator functions
 public class Calculator {
 
     // String ArrayList to store past expressions
-    // Note: Must edit to include answers
     private ArrayList<Expression> expHist;
 
     public Calculator() {
@@ -20,22 +17,29 @@ public class Calculator {
         expHist.add(exp);
     }
 
-    // Method to display expression history
-    public void showHist() {
+    // Method to get expression history
+    public ArrayList<Expression> getHist() throws CloneNotSupportedException{
 
+        // Creates a new ArrayList
+        ArrayList<Expression> userList = new ArrayList<Expression>();
+
+        // If the instance data is empty, return userList as is
         if (expHist.isEmpty()) {
-            System.out.print("\n" + "History is empty!" + "\n");
+            return userList;
         }
 
+        // Otherwise, iterate through expHist
         else {
 
-            System.out.println();
+            // For every Expression in expHist, add a copy of it to userList
+            for (Expression exp : expHist) {
 
-            // For each Expression object stored in expHist, print stored expression and its solution
-            for (int i = 0; i < expHist.size(); i++) {
-                Expression exp = expHist.get(i);
-                System.out.println(exp.getExpression() + " = " + new DecimalFormat("#.###########").format(exp.getSolution()));
-            } 
+                userList.add(exp.clone());
+
+            }
+
+            // After copying Expression data, return completed ArrayList
+            return userList;
 
         }
 

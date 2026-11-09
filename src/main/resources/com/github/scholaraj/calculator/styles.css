@@ -114,3 +114,14 @@
     -fx-background-color: rgba(89, 117, 105, 0.565);
 
 }
+
+/* Styling for cells in histList */
+#histList .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(48, 44, 44); 
+
+    -fx-min-height: 40px;
+
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+}

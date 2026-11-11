@@ -64,6 +64,9 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>com.github.scholaraj.calculator.App</mainClass>
+                            <options>
+                                <option>--enable-native-access=javafx.graphics</option>
+                            </options>
                         </configuration>
                     </execution>
                 </executions>

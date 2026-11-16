@@ -3,3 +3,4 @@ target/
 
 *.lst
 *.class
+.DS_Store

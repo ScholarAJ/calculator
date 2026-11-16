@@ -65,6 +65,7 @@
                         <configuration>
                             <mainClass>com.github.scholaraj.calculator.App</mainClass>
                             <options>
+                                <!--Prevents restricted method error when running app-->
                                 <option>--enable-native-access=javafx.graphics</option>
                             </options>
                         </configuration>
